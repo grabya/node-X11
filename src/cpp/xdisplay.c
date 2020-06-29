@@ -66,6 +66,8 @@ extern "C"
 									  *desktopWidth, *desktopHeight)) == NULL)
 		{
 			printf("XShmCreateImage failed.\n");
+		} else {
+			printf("XShmCreateImage\n");
 		}
 
 		//get shm info
@@ -74,6 +76,9 @@ extern "C"
 									   IPC_CREAT | 0777)) < 0)
 		{
 			printf("shmget error");
+		} else {
+			printf("shmget\n");
+
 		}
 
 		//
@@ -82,11 +87,16 @@ extern "C"
 		if (XShmAttach(display, &__xshminfo) == 0)
 		{
 			printf("XShmAttach failed.\n");
+		} else {
+			printf("XShmAttach\n");
 		}
 		//
 		rootWindow = XRootWindow(display, screenNumber);
 		// Xrandr init
 		rr_screen = XRRGetScreenResources(display, rootWindow);
+		int w, h;
+		get_current_screen_resolution(&w, &h);
+		print("XRRGetScreenResources (w=%d, h=%d)\n", w, h);
 		int errorbase;
 		int eventbase;
 		XRRQueryExtension(display, &eventbase, &errorbase);
