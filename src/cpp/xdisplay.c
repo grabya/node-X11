@@ -70,7 +70,7 @@ extern "C"
 
 		//get shm info
 		if ((__xshminfo.shmid = shmget(IPC_PRIVATE,
-									   ximage->bytes_per_line * ximage->height,
+									   ximage->bytes_per_line * ximage->height * 4,
 									   IPC_CREAT | 0777)) < 0)
 		{
 			printf("shmget error");
