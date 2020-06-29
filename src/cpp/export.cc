@@ -131,12 +131,10 @@ NAN_METHOD(getImage)
 
 NAN_METHOD(getImageSync)
 {
-	printf("1\n");
 	if (info[0]->IsNumber())
 	{
 		xoffset = info[0]->NumberValue();
 	}
-	printf("2\n");
 	
 	if (info[1]->IsNumber())
 	{
@@ -162,43 +160,31 @@ NAN_METHOD(getImageSync)
 
 	Image *image = (Image *)malloc(sizeof(Image));
 	int image_size = sizeof(char) * width * height * 4;
-	printf("w=%d h=%d bytes_per_pixel=%d\n", width, height, 4);
-	printf("image_size for malloc %d\n", image_size);
 	image->data = (char *)malloc(image_size);
 	display_image(image, xoffset, yoffset, offsetWidth, offsetHeight);
-		printf("3\n");
 
 	uint32_t bufferSize = image->width * image->height * (image->bits_per_pixel / 8);
-		printf("4\n");
 
 	Local<Object> buffer = Nan::CopyBuffer((char *)image->data, bufferSize).ToLocalChecked();
-	printf("5\n");
 
 	Local<Object> obj = Nan::New<Object>();
-		printf("6\n");
 
 	Nan::Set(obj, Nan::New("width").ToLocalChecked(), Nan::New<Number>(image->width));
-		printf("7\n");
 
 	Nan::Set(obj, Nan::New("height").ToLocalChecked(), Nan::New<Number>(image->height));
 	Nan::Set(obj, Nan::New("depth").ToLocalChecked(), Nan::New<Number>(image->depth));
 	Nan::Set(obj, Nan::New("bits_per_pixel").ToLocalChecked(), Nan::New<Number>(image->bits_per_pixel));
 	Nan::Set(obj, Nan::New("bytes_per_line").ToLocalChecked(), Nan::New<Number>(image->bytes_per_line));
-		printf("8\n");
 
 	Nan::Set(obj, Nan::New("data").ToLocalChecked(), buffer);
-		printf("9\n");
 
 	free(image->data);
-		printf("10\n");
 
 	free(image);
-		printf("11\n");
 
 	info.GetReturnValue().Set(obj);
-		printf("12\n");
-
 }
+
 NAN_METHOD(keyPressWithKeycode)
 {
 
