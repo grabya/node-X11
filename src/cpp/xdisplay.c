@@ -96,7 +96,7 @@ extern "C"
 		rr_screen = XRRGetScreenResources(display, rootWindow);
 		int w, h;
 		get_current_screen_resolution(&w, &h);
-		print("XRRGetScreenResources (w=%d, h=%d)\n", w, h);
+		printf("XRRGetScreenResources (w=%d, h=%d)\n", w, h);
 		int errorbase;
 		int eventbase;
 		XRRQueryExtension(display, &eventbase, &errorbase);
