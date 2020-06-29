@@ -161,8 +161,8 @@ NAN_METHOD(getImageSync)
 	}
 
 	Image *image = (Image *)malloc(sizeof(Image));
-	int image_size = sizeof(char) * width * height * image->bits_per_pixel / 8;
-	printf("w=%d h=%d bits_per_pixel=%d\n", width, height, image->bits_per_pixel);
+	int image_size = sizeof(char) * width * height * 4;
+	printf("w=%d h=%d bytes_per_pixel=%d\n", width, height, 4);
 	printf("image_size for malloc %d\n", image_size);
 	image->data = (char *)malloc(image_size);
 	display_image(image, xoffset, yoffset, offsetWidth, offsetHeight);
