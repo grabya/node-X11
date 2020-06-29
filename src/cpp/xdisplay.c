@@ -105,6 +105,8 @@ extern "C"
 	void display_image(Image *image, int xoffset, int yoffset, int width, int height)
 	{
 		XLockDisplay(display);
+		
+		// are we getting only a subrect of the full image
 		if (xoffset > 0 || yoffset > 0 || width > 0 || height > 0)
 		{
 			printf("XGetImage\n");
