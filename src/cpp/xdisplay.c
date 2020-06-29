@@ -97,11 +97,12 @@ extern "C"
 		XLockDisplay(display);
 		if (xoffset > 0 || yoffset > 0 || width > 0 || height > 0)
 		{
-
+			printf("XGetImage\n");
 			ximage = XGetImage(display, rootWindow, xoffset, yoffset, width, height, XAllPlanes(), ZPixmap);
 		}
 		else
 		{
+			printf("XShmGetImage\n");
 			if (XShmGetImage(display, rootWindow, ximage, 0, 0, XAllPlanes()) == 0)
 			{
 				// image->data RGBA
