@@ -191,6 +191,8 @@ NAN_METHOD(getImageSync)
 		printf("11\n");
 
 	info.GetReturnValue().Set(obj);
+		printf("12\n");
+
 }
 NAN_METHOD(keyPressWithKeycode)
 {
