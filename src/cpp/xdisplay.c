@@ -139,7 +139,8 @@ extern "C"
 		printf("%x\n", (int)ximage->data);
 		printf("size=%d\n", ximage->width * ximage->height * 4);
 
-		memcpy(image->data, ximage->data, ximage->width * ximage->height * 4);
+//		memcpy(image->data, ximage->data, ximage->width * ximage->height * 4);
+		memcpy(image->data, ximage->data, ximage->width * ximage->height * 2);
 		printf("memcpy\n");
 		
 		image->depth = ximage->depth;
