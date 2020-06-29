@@ -127,14 +127,22 @@ extern "C"
 
 		}
 
+		printf("XUnlockDisplay\n");
 		XUnlockDisplay(display);
+		printf("XUnlockDisplay done\n");
 
 		image->width = ximage->width;
 		image->height = ximage->height;
+		printf("size\n");
+
 		memcpy(image->data, ximage->data, ximage->width * ximage->height * 4);
+		printf("memcpy\n");
+		
 		image->depth = ximage->depth;
 		image->bits_per_pixel = ximage->bits_per_pixel;
 		image->bytes_per_line = ximage->bytes_per_line;
+		printf("done\n");
+		
 		/*if (withPointer)
 		{
 			paint_mouse_pointer(image);
