@@ -107,11 +107,12 @@ extern "C"
 		XLockDisplay(display);
 		
 		// are we getting only a subrect of the full image
-//		if (xoffset > 0 || yoffset > 0 || width > 0 || height > 0)
-		if (true || xoffset > 0 || yoffset > 0 || width > 0 || height > 0)
+		if (xoffset > 0 || yoffset > 0 || width > 0 || height > 0)
 		{
 			printf("XGetImage\n");
 			ximage = XGetImage(display, rootWindow, xoffset, yoffset, width, height, XAllPlanes(), ZPixmap);
+			printf("XGetImage done\n");
+
 		}
 		else
 		{
@@ -122,6 +123,8 @@ extern "C"
 				printf("FATAL: XShmGetImage failed.\n");
 				exit(-1);
 			}
+			printf("XShmGetImage done\n");
+
 		}
 
 		XUnlockDisplay(display);
