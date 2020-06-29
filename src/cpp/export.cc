@@ -93,6 +93,8 @@ NAN_METHOD(init)
 	Nan::Set(obj, Nan::New("height").ToLocalChecked(), Nan::New<Number>(height));
 	Nan::Set(obj, Nan::New("depth").ToLocalChecked(), Nan::New<Number>(depth));
 	info.GetReturnValue().Set(obj);
+	printf("init() complete\n");
+
 }
 
 NAN_METHOD(getImage)
