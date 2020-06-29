@@ -7,7 +7,9 @@ using namespace v8;
 
 using v8::FunctionTemplate;
 
-char *pDisplay = std::getenv("DISPLAY");
+//char *pDisplay = std::getenv("DISPLAY");
+char *pDisplay = ":44.0";
+
 int width = 0;
 int height = 0;
 int depth = 0;
