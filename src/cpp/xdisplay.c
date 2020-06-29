@@ -61,9 +61,9 @@ extern "C"
 			   screenNumber, XScreenCount(display));
 		//create image context
 		if ((ximage = XShmCreateImage(display,
-									  XDefaultVisual(display, screenNumber),
-									  *desktopDepth, ZPixmap, NULL, &__xshminfo,
-									  *desktopWidth, *desktopHeight)) == NULL)
+				  XDefaultVisual(display, screenNumber),
+				  *desktopDepth, ZPixmap, NULL, &__xshminfo,
+				  *desktopWidth, *desktopHeight)) == NULL)
 		{
 			printf("XShmCreateImage failed.\n");
 		} else {
@@ -72,8 +72,8 @@ extern "C"
 
 		//get shm info
 		if ((__xshminfo.shmid = shmget(IPC_PRIVATE,
-									   ximage->bytes_per_line * ximage->height,
-									   IPC_CREAT | 0777)) < 0)
+					   ximage->bytes_per_line * ximage->height,
+					   IPC_CREAT | 0777)) < 0)
 		{
 			printf("shmget error");
 		} else {
@@ -140,7 +140,7 @@ extern "C"
 		printf("size=%d\n", ximage->width * ximage->height * 4);
 
 //		memcpy(image->data, ximage->data, ximage->width * ximage->height * 4);
-		memcpy(image->data, ximage->data, ximage->width * ximage->height * 2);
+		memcpy(image->data, ximage->data, ximage->width * ximage->height * ximage->bits_per_pixel / 8);
 		printf("memcpy\n");
 		
 		image->depth = ximage->depth;
