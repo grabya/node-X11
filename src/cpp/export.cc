@@ -183,7 +183,7 @@ NAN_METHOD(getImageSync)
 	Nan::Set(obj, Nan::New("bytes_per_line").ToLocalChecked(), Nan::New<Number>(image->bytes_per_line));
 		printf("8\n");
 
-	//Nan::Set(obj, Nan::New("data").ToLocalChecked(), buffer);
+	Nan::Set(obj, Nan::New("data").ToLocalChecked(), buffer);
 		printf("9\n");
 
 	free(image->data);
