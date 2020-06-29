@@ -109,44 +109,31 @@ extern "C"
 		// are we getting only a subrect of the full image
 		if (xoffset > 0 || yoffset > 0 || width > 0 || height > 0)
 		{
-			printf("XGetImage\n");
 			ximage = XGetImage(display, rootWindow, xoffset, yoffset, width, height, XAllPlanes(), ZPixmap);
-			printf("XGetImage done\n");
 
 		}
 		else
 		{
-			printf("XShmGetImage\n");
 			if (XShmGetImage(display, rootWindow, ximage, 0, 0, XAllPlanes()) == 0)
 			{
 				// image->data RGBA
 				printf("FATAL: XShmGetImage failed.\n");
 				exit(-1);
 			}
-			printf("XShmGetImage done\n");
 
 		}
 
-		printf("XUnlockDisplay\n");
 		XUnlockDisplay(display);
-		printf("XUnlockDisplay done\n");
 
 		image->width = ximage->width;
 		image->height = ximage->height;
-		printf("size\n");
-		
-		printf("%x\n", (int)image->data);
-		printf("%x\n", (int)ximage->data);
-		printf("size=%d\n", ximage->width * ximage->height * 4);
 
 //		memcpy(image->data, ximage->data, ximage->width * ximage->height * 4);
 		memcpy(image->data, ximage->data, ximage->width * ximage->height * ximage->bits_per_pixel / 8);
-		printf("memcpy\n");
 		
 		image->depth = ximage->depth;
 		image->bits_per_pixel = ximage->bits_per_pixel;
 		image->bytes_per_line = ximage->bytes_per_line;
-		printf("done\n");
 		
 		/*if (withPointer)
 		{
